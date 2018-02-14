@@ -11,6 +11,10 @@ output:
   slidy_presentation: default
 ---
 
+## Course material
+
+This presentation: [http://bit.ly/datavizualisation]()
+
 ## What are we talking about? 
 
 - Explore your dataset, **graphically**
@@ -246,6 +250,18 @@ ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=Time, shape=genotype)) +
 
 ```
 
+
+## Removing chart junk
+
+
+```{r, echo=T, warning=F}
+
+ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=Time, shape=genotype)) +
+  geom_point() + 
+  theme_classic()
+
+```
+
 ## Using `facets`
 
 `Facets` can be used to split the data and present them side to side. 
@@ -320,19 +336,7 @@ ggplot(data=mydata, aes(x=genotype, y=TRL)) +
 
 ## View everything at once
 
-Now, can also try to see the data at once. For this, we need to play a bit with the initial data, to move from a wide to long format. We also need to **normalize** the dataset, for each variable, so we can vizualy compare them. 
-
-```{r, echo=T, warning=F}
-# Normilsation function
-normalit<-function(m){
-  (m - min(m))/(max(m)-min(m))
-}
-
-```
-
-## View everything at once
-
-Now, can also try to see the data at once. For this, we need to play a bit with the initial data, to move from a wide to long format. We also need to normalize the dataset, for each variable, so we can vizualy compare them. 
+Now, can also try to see the data at once. For this, we need to play a bit with the initial data, to move from a `wide` to `long` format. 
 
 ```{r, echo=T, warning=F}
 
