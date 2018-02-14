@@ -515,7 +515,7 @@ ggplotly(pl )
 
 > Google is your friend !
 
-This presentation: [http://bit.ly/ggplot-pres]()
+This presentation: [http://bit.ly/datavizualisation]()
 
 [http://seananderson.ca/ggplot2-FISH554/]()
 
