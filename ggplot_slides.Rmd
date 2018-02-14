@@ -54,7 +54,7 @@ mydata <- read_csv("datasets/architect.csv")
 
 ## Look at the struture of the data
 
-```{r}
+```{r, warning=F}
 str(mydata)
 ```
 
@@ -63,7 +63,7 @@ str(mydata)
 
 Use `dplyr` to filter data based on specific values. `%>%` is called a *pipe* and allows you to queue up operations. 
 
-```{r}
+```{r, warning=F}
 mydata %>%
   filter(genotype == "dense") %>%
   head()
@@ -76,7 +76,7 @@ mydata %>%
 
 You can also select, or drop specific columns using the `select` verb.
 
-```{r}
+```{r, warning=F}
 
 mydata %>%
   select(c(FileName, genotype, Time, Height, Width))%>%
@@ -89,7 +89,7 @@ mydata %>%
 
 You can also select, or drop specific columns using the `select` verb.
 
-```{r}
+```{r, warning=F}
 
 mydata <- mydata %>%
   select(-c(X1))
@@ -105,7 +105,7 @@ mydata %>%
 
 And you can create new variables using the `mutate` verb. 
 
-```{r}
+```{r, warning=F}
 
 mydata %>%
   mutate(newvar = log(TRL))%>%
@@ -156,7 +156,7 @@ Used to produce statistical graphics, main developer = Hadley Wickham
 
 We first create the plot, by setting the `data` and the `aestetic`. 
 
-```{r, echo=T}
+```{r, echo=T, warning=F}
 myplot <- ggplot(data=mydata, aes(x=TRL, y=TNLR))
 myplot
 ```
@@ -165,7 +165,7 @@ myplot
 
 We need to add a *geom* to display the plot. Different *geom* can be used.
 
-```{r, echo=T}
+```{r, echo=T, warning=F}
 
 myplot + 
   ### <b>
@@ -177,7 +177,7 @@ myplot +
 
 We need to add a *geom* to display the plot. Different *geom* can be used.
 
-```{r, echo=T}
+```{r, echo=T, warning=F}
 myplot + 
   ### <b>
   geom_line()
@@ -188,7 +188,7 @@ myplot +
 
 We need to add a *geom* to display the plot. Different *geom* can be used.
 
-```{r, echo=T}
+```{r, echo=T, warning=F}
 myplot + 
   ### <b>
   geom_step()
@@ -201,7 +201,7 @@ myplot +
 
 The advantage of using a `layered` approach, is that the layers can be combined. For instance, several `geom` can be used in the same plot.
 
-```{r, echo=T}
+```{r, echo=T, warning=F}
 myplot + 
   ### <b>
   geom_point() + geom_step()
@@ -214,7 +214,7 @@ myplot +
 
 Let's use the different categories we have. For this, we add a `colour` argument in the `aes`. `ggplot` will automatically pick a discrete color scale.
 
-```{r, echo=T}
+```{r, echo=T, warning=F}
 
 ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=genotype)) +
   geom_point()
@@ -227,7 +227,7 @@ ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=genotype)) +
 
 Let's use one of the variable as a continuous caterogy. For this, we add a `colour` argument in the `aes`. `ggplot` will automatically pick a continuous color scale.
 
-```{r, echo=T}
+```{r, echo=T, warning=F}
 
 ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=Height)) +
   geom_point()
@@ -237,7 +237,7 @@ ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=Height)) +
 
 ## Using two categories
 
-When using multiple categories (here, `Species` and `Treatment`), we can both use define different colors (`colour`) and point styles (`shape`) in the `aes` argument.
+When using multiple categories, we can both use define different colors (`colour`) and point styles (`shape`) in the `aes` argument.
 
 ```{r, echo=T, warning=F}
 
@@ -250,7 +250,7 @@ ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=Time, shape=genotype)) +
 
 `Facets` can be used to split the data and present them side to side. 
 
-```{r, echo=T}
+```{r, echo=T, warning=F}
 
 ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=genotype)) +
   geom_point() + 
@@ -264,7 +264,7 @@ ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=genotype)) +
 
 `ggplot` has some built-in `stat` functions that can be directly used in the plots.
 
-```{r, echo=T}
+```{r, echo=T, warning=F}
 
 
 ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=genotype)) + 
@@ -278,7 +278,7 @@ ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=genotype)) +
 
 `ggplot` has some built-in `stat` functions that can be directly used in the plots.
  
-```{r, echo=T}
+```{r, echo=T, warning=F, message=F}
 ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=genotype)) + 
   geom_point() + 
   geom_smooth(se = FALSE)
@@ -290,7 +290,7 @@ ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=genotype)) +
 
 `ggplot` has some built-in `stat` functions that can be directly used in the plots.
 
-```{r, echo=T}
+```{r, echo=T, warning=F, message=F}
 ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=genotype)) + 
   geom_point() + 
   geom_smooth(se = FALSE, method="lm")
@@ -301,7 +301,7 @@ ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=genotype)) +
 
 `ggplot` has some built-in `stat` functions that can be directly used in the plots.
 
-```{r, echo=T}
+```{r, echo=T, warning=F}
 ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=genotype)) + 
   geom_point() + 
   stat_ellipse()
@@ -310,7 +310,7 @@ ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=genotype)) +
 
 ## Boxplot
 
-```{r, echo=T}
+```{r, echo=T, warning=F}
 
 ggplot(data=mydata, aes(x=genotype, y=TRL)) + 
   geom_boxplot()
@@ -322,7 +322,7 @@ ggplot(data=mydata, aes(x=genotype, y=TRL)) +
 
 Now, can also try to see the data at once. For this, we need to play a bit with the initial data, to move from a wide to long format. We also need to **normalize** the dataset, for each variable, so we can vizualy compare them. 
 
-```{r, echo=T}
+```{r, echo=T, warning=F}
 # Normilsation function
 normalit<-function(m){
   (m - min(m))/(max(m)-min(m))
@@ -334,10 +334,9 @@ normalit<-function(m){
 
 Now, can also try to see the data at once. For this, we need to play a bit with the initial data, to move from a wide to long format. We also need to normalize the dataset, for each variable, so we can vizualy compare them. 
 
-```{r, echo=T}
+```{r, echo=T, warning=F}
 
 mydatalong <- mydata %>%
-  mutate_each(funs(normalit), which(sapply(., is.numeric))) %>%   # Normalize eahc numeric column
   gather(TRL:ExtPathLength, key = "variable", value = "value")
 
 mydatalong %>%
@@ -349,26 +348,27 @@ mydatalong %>%
 
 ## View everything at once
 
-```{r, echo=T, eval=F}
+```{r, echo=T, eval=F, warning=F}
 
 # Make a lin plot, for each variable
 mydatalong %>%
   filter(Time == max(Time)) %>%   # Select just one time point (the last)
-  ggplot(aes(variable, value, group=FileName, colour=genotype)) + 
-  geom_line() + 
-  facet_wrap(~genotype, nrow=2)+ 
+  ggplot(aes(genotype, value, colour=genotype)) + 
+  geom_boxplot() + 
+  facet_wrap(~variable, nrow=2)+ 
   theme(text = element_text(size=9))
 ```
 
 ## View everything at once
 
-```{r, echo=F, eval=T}
+```{r, echo=F, eval=T, warning=F, out.width = '100%'}
 
 # Make a lin plot, for each variable
 mydatalong %>%
   filter(Time == max(Time)) %>%   # Select just one time point (the last)
-  ggplot(aes(variable, value, group=FileName, colour=genotype)) +   geom_line() + 
-  facet_wrap(~genotype, nrow=2)+ 
+  ggplot(aes(genotype, value, colour=genotype)) + 
+  geom_boxplot() + 
+  facet_wrap(~variable, nrow=2)+ 
   theme(text = element_text(size=9))
 ```
 
@@ -376,79 +376,30 @@ mydatalong %>%
 
 ## View everything at once
 
-```{r, echo=T, eval=F}
+```{r, echo=T, eval=F, warning=F}
+
+# Make a lin plot, for each variable
+mydatalong %>%
+  filter(Time == max(Time)) %>%   # Select just one time point (the last)
+  ggplot(aes(genotype, value, colour=genotype)) + 
+  geom_boxplot() + 
+  facet_wrap(~variable, nrow=2, scales = "free")+ 
+  theme(text = element_text(size=9))
+
+
+```
+
+## View everything at once
+
+```{r, echo=F, eval=T, warning=F, out.width = '100%'}
 
 mydatalong %>%
   filter(Time == max(Time)) %>%   # Select just one time point (the last)
-  ggplot(aes(variable, value, group=FileName, colour=genotype)) +   geom_line() + 
-  coord_polar() +  # Change the coordinate system
-  facet_wrap(~genotype, nrow=2)+ 
+  ggplot(aes(genotype, value, colour=genotype)) + 
+  geom_boxplot() + 
+  facet_wrap(~variable, nrow=2, scales = "free")+ 
   theme(text = element_text(size=9))
 
-
-```
-
-## View everything at once
-
-```{r, echo=F, eval=T}
-
-mydatalong %>%
-  filter(Time == max(Time)) %>%   # Select just one time point (the last)
-  ggplot(aes(variable, value, group=FileName, colour=genotype)) +   geom_line() + 
-  coord_polar() +  # Change the coordinate system
-  facet_wrap(~genotype, nrow=2)+ 
-  theme(text = element_text(size=9))
-
-
-```
-
-
-## View everything at once
-
-```{r, echo=T, eval=F}
-
-mydatalong %>%
-  filter(Time == max(Time)) %>%   # Select just one time point (the last)
-  ggplot(aes(variable, value, group=FileName, colour=genotype)) +   
-  geom_polygon(fill=NA) +  # Close the radar plot
-  coord_polar() +  # Change the coordinate system
-  facet_wrap(~genotype, nrow=2)+ 
-  theme(text = element_text(size=9))
-
-
-```
-
-## View everything at once
-
-```{r, echo=F, eval=T}
-
-mydatalong %>%
-  filter(Time == max(Time)) %>%   # Select just one time point (the last)
-  ggplot(aes(variable, value, group=FileName, colour=genotype)) +
-  geom_polygon(fill=NA) +  # Close the radar plot
-  coord_polar() +  # Change the coordinate system
-  facet_wrap(~genotype, nrow=2)+ 
-  theme(text = element_text(size=9))
-
-
-```
-
-
-
-## View everything at once
-
-```{r, echo=T, eval=F}
-
-library(gganimate)
-
-pl <- mydatalong %>%
-  ggplot(aes(variable, value, group=FileName, colour=genotype, frame=Time)) +
-  geom_polygon(fill=NA) +  # Close the radar plot
-  coord_polar() +  # Change the coordinate system
-  facet_wrap(~genotype, nrow=2)+ 
-  theme(text = element_text(size=9))
-
-gganimate(pl)
 
 ```
 
@@ -462,7 +413,7 @@ gganimate(pl)
 https://plot.ly/
 
 
-```{r, warning=F}
+```{r, warning=F, message=F}
 library("plotly")
 ```
 
@@ -471,7 +422,7 @@ library("plotly")
 
 Any type of `ggplot` can be wrapped up in a `plotly` figure
 
-```{r, warning=F}
+```{r, warning=F, message=F}
 
 
 pl <- ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=genotype)) +
@@ -484,7 +435,7 @@ ggplotly(pl)
 ## `plotly` works great with `ggplot`
 
 We can choose what type of label we want to see
-```{r, warning=F}
+```{r, warning=F, message=F}
 
 
 pl <- ggplot(data=mydata, aes(x=TRL, y=TNLR, colour=genotype, label=FileName)) +
@@ -497,7 +448,7 @@ ggplotly(pl)
 
 ## `plotly` works great with `ggplot`
 
-```{r, warning=F}
+```{r, warning=F, message=F}
 
 
 
